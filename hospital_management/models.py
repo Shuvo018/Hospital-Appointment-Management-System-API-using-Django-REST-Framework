@@ -15,7 +15,6 @@ class User(AbstractUser):
 
     role = models.CharField(max_length=10, choices=Role.choices, default=Role.PATIENT)
 
-    # Profile fields (Full Name is covered by first_name/last_name from AbstractUser)
     email = models.EmailField(unique=True)
     phone_number = models.CharField(max_length=15, unique=True)
     address = models.TextField(blank=True, null=True)

@@ -24,3 +24,16 @@ class FilterDoctorViewAPI(APIView):
         serializer = DoctorSerializer(query, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
+
+class FilterAppointmentViewAPI(APIView):
+    
+    def get(self, request):
+        status = request.query_params.get('status')
+        search = request.query_params.get('search')
+        
+        if status:
+            query = Appointment.objects.filter(status=status)
+
+
+        serializer = DoctorSerializer(query, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)

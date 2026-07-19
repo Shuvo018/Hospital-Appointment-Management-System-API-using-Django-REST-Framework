@@ -22,8 +22,6 @@ class DoctorAPIView(APIView):
 
 class DoctorDetailAPIView(APIView):
     def get(self, request, pk):
-        print(pk)
-        doctor = get_object_or_404(Doctor, id=id)
-        print(doctor)
+        doctor = get_object_or_404(Doctor, pk=pk)
         serializer = DoctorSerializer(doctor)
         return Response(serializer.data)

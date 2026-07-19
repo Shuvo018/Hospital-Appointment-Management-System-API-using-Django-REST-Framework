@@ -7,15 +7,28 @@ from django.shortcuts import get_object_or_404
 from hospital_management.permissions import IsDoctorOnly, IsPatientOnly
 from rest_framework.permissions import AllowAny
 
+class DoctorAppointmentViewAPI(APIView):
+    permission_classes = [IsDoctorOnly]
+    def get(self, request):
+        doctor_id = request.query_params.get('doctor_id')
+        if doctor_id:
+            appointments = Appointment.objects.filter(doctor=doctor_id)
+            serializer = AppointmentSerializer(appointments, many=True)
+
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    
+
 
 class AppointmentViewAPI(APIView):
     permission_classes = [IsPatientOnly]
-
     def get(self, request):
-        appointments = Appointment.objects.all()
-        serializer = AppointmentSerializer(appointments, many=True)
-
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        patient_id = request.query_params.get('patient_id')
+        if patient_id:
+            appointments = Appointment.objects.filter(patient=patient_id)
+            serializer = AppointmentSerializer(appointments, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
     
 
     def post(self, request):

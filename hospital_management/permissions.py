@@ -6,4 +6,11 @@ class IsDoctorOnly(BasePermission):
             return True
         
         return request.user.is_authenticated and request.user.role == "Doctor"
-    
+
+
+class IsPatientOnly(BasePermission):
+    def has_permission(self, request, view):
+        if request.method in SAFE_METHODS:
+            return True
+        
+        return request.user.is_authenticated and request.user.role == "Patient"

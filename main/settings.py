@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'hospital_management',
     'accounts',
     'doctor_management',
+    'appointment_management',
 
 ]
 

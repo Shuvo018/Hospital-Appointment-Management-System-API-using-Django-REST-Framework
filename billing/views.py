@@ -8,7 +8,8 @@ from hospital_management.permissions import IsDoctorOnly, IsPatientOnly
 from rest_framework.permissions import AllowAny
 
 class DoctorBillViewAPI(APIView):
-    
+    permission_classes = [IsDoctorOnly]
+
     def get(self, request):
         doctor_id = request.query_params.get('doctor_id')
         if doctor_id:
@@ -19,7 +20,8 @@ class DoctorBillViewAPI(APIView):
     
 
 class BillViewAPI(APIView):
-    
+    permission_classes = [IsPatientOnly]
+
     def get(self, request):
         patient_id = request.query_params.get('patient_id')
         if patient_id:
@@ -37,6 +39,7 @@ class BillViewAPI(APIView):
     
 
 class BillDetailsViewAPI(APIView):
+    permission_classes = [IsPatientOnly]
     
     def get(self, request, pk):
         bill = get_object_or_404(Bill, pk=pk)

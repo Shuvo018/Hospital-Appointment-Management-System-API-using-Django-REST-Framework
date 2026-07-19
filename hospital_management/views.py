@@ -1,4 +1,4 @@
-from hospital_management.serializers import DoctorSerializer, AppointmentSerializer
+from hospital_management.serializers import DoctorSerializer, AppointmentSerializer, UserSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -53,9 +53,15 @@ class FilterAppointmentViewAPI(APIView):
         if status:
             query = query.filter(status=status)
         elif search:
-            # query = User.objects.filter(firstname__icontains=search)
-            pass
+            query = User.objects.filter(firstname__icontains=search)
 
+            paginator = PageNumberPagination()
+            paginator.page_size = 2
+            page = paginator.paginate_queryset(query, request=request)
+
+            serializer = UserSerializer(page, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        
         elif ordering:
             query = query.order_by(ordering)
 

@@ -19,10 +19,8 @@ A small hospital wants a simple system where:
 
 ---
 
-<details>
-<summary><b>Step by step project details</b></summary>
-For detailed ... [](./PROJECT_DETAILS.md).
-</details>
+## Step by step project details with API end points
+{{ include '/PROJECT_DETAILS.md' }}
 
 ---
 

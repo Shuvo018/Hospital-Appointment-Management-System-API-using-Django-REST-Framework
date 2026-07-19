@@ -36,7 +36,7 @@ class AppointmentDetailViewAPI(APIView):
     
     def put(self, request, pk):
         appointment = get_object_or_404(Appointment, pk=pk)
-        serializer = AppointmentSerializer(appointment, data=request.dta)
+        serializer = AppointmentSerializer(appointment, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
@@ -44,7 +44,7 @@ class AppointmentDetailViewAPI(APIView):
     
     def patch(self, request, pk):
         appointment = get_object_or_404(Appointment, pk=pk)
-        serializer = AppointmentSerializer(appointment, data=request.dta, partial=True)
+        serializer = AppointmentSerializer(appointment, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)

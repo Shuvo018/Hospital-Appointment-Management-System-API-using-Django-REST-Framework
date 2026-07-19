@@ -13,17 +13,20 @@ from rest_framework.permissions import AllowAny
 class FilterDoctorViewAPI(APIView):
     
     def get(self, request):
+        query = Doctor.objects.all()
         dept = request.query_params.get('department')
         doctor_id = request.query_params.get('doctor')
         search = request.query_params.get('search')
-        
+        ordering = request.query_params.get('ordering')
         
         if dept:
-            query = Doctor.objects.filter(department=dept)
+            query = query.filter(department=dept)
         elif doctor_id:
-            query = Doctor.objects.filter(id=doctor_id)
+            query = query.filter(id=doctor_id)
         elif search:
-            query = Doctor.objects.filter(name=search)
+            query = query.filter(name__icontains=search)
+        elif ordering:
+            query = query.order_by(ordering)
 
         serializer = DoctorSerializer(query, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -32,13 +35,14 @@ class FilterDoctorViewAPI(APIView):
 class FilterAppointmentViewAPI(APIView):
     
     def get(self, request):
+        query = Appointment.objects.all()
         status = request.query_params.get('status')
         search = request.query_params.get('search')
         
         if status:
-            query = Appointment.objects.filter(status=status)
+            query = query.filter(status=status)
         elif search:
-            query = User.objects.filter(firstname=search)
+            query = User.objects.filter(firstname__icontains=search)
             
 
         serializer = AppointmentSerializer(query, many=True)

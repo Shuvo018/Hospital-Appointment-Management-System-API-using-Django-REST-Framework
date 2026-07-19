@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 from hospital_management.permissions import IsDoctorOnly, IsPatientOnly
@@ -39,11 +39,13 @@ class LoginView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 class LogoutView(APIView):
-    permission_classes = [IsPatientOnly, IsDoctorOnly]
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
+        print(request.data)
         try:
-            RefreshToken(request.data['refresh_token']).blacklist()
+            RefreshToken(request.data['refresh']).blacklist()
             return Response(status=status.HTTP_205_RESET_CONTENT)
         except Exception as e:
+            print(e)
             return Response(status=status.HTTP_400_BAD_REQUEST)

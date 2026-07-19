@@ -20,7 +20,14 @@ A small hospital wants a simple system where:
 ---
 
 ## Step by step project details with API end points
-{{ include '/PROJECT_DETAILS.md' }}
+<details>
+<summary><b>🚀 Click to view full Project Details & API Endpoints</b></summary>
+
+The complete, step-by-step documentation and API endpoint specifications are maintained in the main project file. 
+
+👉 **[View PROJECT_DETAILS.md](./PROJECT_DETAILS.md)**
+
+</details>
 
 ---
 

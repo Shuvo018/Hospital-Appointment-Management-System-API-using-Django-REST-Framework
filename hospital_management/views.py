@@ -33,7 +33,8 @@ class FilterAppointmentViewAPI(APIView):
         
         if status:
             query = Appointment.objects.filter(status=status)
-
+        elif search:
+            query = User.objects.filter(name=search)
 
         serializer = DoctorSerializer(query, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)

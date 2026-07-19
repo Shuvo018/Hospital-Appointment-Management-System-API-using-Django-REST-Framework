@@ -4,9 +4,12 @@ from rest_framework import status
 from doctor_management.serializers import DoctorSerializer, DoctorCreateSerializer
 from hospital_management.models import Doctor
 from django.shortcuts import get_object_or_404
-
+from hospital_management.permissions import IsDoctorOnly
+from rest_framework.permissions import AllowAny
 
 class DoctorAPIView(APIView):
+    permission_classes = [AllowAny]
+    
     def get(self, request):
         doctors = Doctor.objects.all()
         serializer = DoctorSerializer(doctors, many=True)
@@ -21,6 +24,8 @@ class DoctorAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class DoctorDetailAPIView(APIView):
+    permission_classes = [IsDoctorOnly]
+
     def get(self, request, pk):
         doctor = get_object_or_404(Doctor, pk=pk)
         serializer = DoctorSerializer(doctor)

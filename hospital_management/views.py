@@ -1,4 +1,4 @@
-from hospital_management.serializers import DoctorSerializer
+from hospital_management.serializers import DoctorSerializer, AppointmentSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -15,11 +15,15 @@ class FilterDoctorViewAPI(APIView):
     def get(self, request):
         dept = request.query_params.get('department')
         doctor_id = request.query_params.get('doctor')
+        search = request.query_params.get('search')
+        
         
         if dept:
             query = Doctor.objects.filter(department=dept)
         elif doctor_id:
             query = Doctor.objects.filter(id=doctor_id)
+        elif search:
+            query = Doctor.objects.filter(name=search)
 
         serializer = DoctorSerializer(query, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -34,7 +38,8 @@ class FilterAppointmentViewAPI(APIView):
         if status:
             query = Appointment.objects.filter(status=status)
         elif search:
-            query = User.objects.filter(name=search)
+            query = User.objects.filter(firstname=search)
+            
 
-        serializer = DoctorSerializer(query, many=True)
+        serializer = AppointmentSerializer(query, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)

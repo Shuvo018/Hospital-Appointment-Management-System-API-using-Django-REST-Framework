@@ -107,3 +107,17 @@ http://127.0.0.1:8000/doctors/1/
     "department": "depart abcd"
 }
 ```
+
+## add appointment
+
+http://127.0.0.1:8000/appointments/
+
+```bash
+{
+    "patient": 2,
+    "doctor": 3,
+    "appointment_date": "2026-07-18",
+    "appointment_time": "18:45:48",
+    "status": "PENDING"
+}
+```

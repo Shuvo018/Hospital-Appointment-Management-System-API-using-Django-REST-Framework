@@ -73,3 +73,27 @@ http://127.0.0.1:8000/doctors/create/
     "visiting_fee": 800
 }
 ```
+
+## doctors list
+
+http://127.0.0.1:8000/doctors/
+
+## get doctor
+
+http://127.0.0.1:8000/doctors/1/
+
+## update doctor
+
+http://127.0.0.1:8000/doctors/1/
+
+```bash
+{
+    "id": 1,
+    "name": "doctor nil",
+    "department": "depart abcd",
+    "specialization": "something Specialization",
+    "visiting_fee": "1000.00",
+    "email": "doctor01@gmail.com",
+    "phone_number": "0188850775"
+}
+```

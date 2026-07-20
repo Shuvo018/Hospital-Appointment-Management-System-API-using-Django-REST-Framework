@@ -26,6 +26,7 @@ A small hospital wants a simple system where:
 The complete, step-by-step documentation and API endpoint specifications are maintained in the main project file. 
 
 👉 **[View PROJECT_DETAILS.md](./PROJECT_DETAILS.md)**
+👉 **[View API with Body.md](./API_endpoint_with_body.md)**
 
 </details>
 

@@ -35,3 +35,14 @@ http://127.0.0.1:8000/accounts/logout/
     "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4NDU2NTM2OCwiaWF0IjoxNzg0NDc4OTY4LCJqdGkiOiIxNmFmMzhjOTRiMTQ0MmUyYjQyMDRmYTZhNDI3MmU0OCIsInVzZXJfaWQiOiI2In0.3ugYuA-5wCSv8MIH8mJGRt0xNf9bKCaOjUVhcUSq71U"
 }
 ```
+
+
+## Forgot password
+
+http://127.0.0.1:8000/accounts/forgot-password/
+
+```bash
+{
+    "email": "shuvodevnath0188@gmail.com"
+}
+```

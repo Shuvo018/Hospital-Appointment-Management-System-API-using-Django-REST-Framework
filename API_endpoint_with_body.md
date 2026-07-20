@@ -14,10 +14,16 @@ http://127.0.0.1:8000/accounts/register/
 }
 ```
 
+# login
+
+http://127.0.0.1:8000/accounts/login/
 
 
 ```bash
-
+{
+    "email": "shuvodevnath0188@gmail.com",
+    "password": "banana1234"
+}
 ```
 
 ```bash

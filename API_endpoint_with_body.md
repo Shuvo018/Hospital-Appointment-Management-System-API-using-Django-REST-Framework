@@ -139,3 +139,22 @@ http://127.0.0.1:8000/appointments/1/
     "status": "PENDING"
 }
 ```
+
+
+## add bill
+
+http://127.0.0.1:8000/bills/
+
+```bash
+{
+    "patient": 1,
+    "doctor": 1,
+    "appointment":1,
+    "consultation_fee": 1000,
+    "discount": 200
+}
+```
+
+## get bill list
+
+http://127.0.0.1:8000/bills/

@@ -5,14 +5,15 @@ from rest_framework import status
 from hospital_management.models import Doctor, User, Appointment
 from django.shortcuts import get_object_or_404
 from hospital_management.permissions import IsDoctorOnly
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.pagination import PageNumberPagination
 
 # Create your views here.
 
 
 class FilterDoctorViewAPI(APIView):
-    
+    permission_classes = [IsAuthenticated]
+
     def get(self, request):
         query = Doctor.objects.all()
         dept = request.query_params.get('department')
@@ -42,7 +43,8 @@ class FilterDoctorViewAPI(APIView):
     
 
 class FilterAppointmentViewAPI(APIView):
-    
+    permission_classes = [IsAuthenticated]
+
     def get(self, request):
         query = Appointment.objects.all()
         status = request.query_params.get('status')

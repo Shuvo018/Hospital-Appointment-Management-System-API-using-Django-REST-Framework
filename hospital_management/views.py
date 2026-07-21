@@ -47,13 +47,13 @@ class FilterAppointmentViewAPI(APIView):
 
     def get(self, request):
         query = Appointment.objects.all()
-        status = request.query_params.get('status')
+        user_status = request.query_params.get('status')
         search = request.query_params.get('search')
         ordering = request.query_params.get('ordering')
 
         
-        if status:
-            query = query.filter(status=status)
+        if user_status:
+            query = query.filter(status=user_status)
         elif search:
             query = User.objects.filter(firstname__icontains=search)
 

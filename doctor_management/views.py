@@ -5,10 +5,10 @@ from doctor_management.serializers import DoctorSerializer, DoctorCreateSerializ
 from hospital_management.models import Doctor
 from django.shortcuts import get_object_or_404
 from hospital_management.permissions import IsDoctorOnly
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 
 class DoctorAPIView(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
     
     def get(self, request):
         doctors = Doctor.objects.all()

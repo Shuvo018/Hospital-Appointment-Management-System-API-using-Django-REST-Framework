@@ -41,7 +41,7 @@ class AppointmentViewAPI(APIView):
         
 
 class AppointmentDetailViewAPI(APIView):
-
+    
     def get(self, request, pk):
         appointment = get_object_or_404(Appointment, pk=pk)
         serializer = AppointmentSerializer(appointment)

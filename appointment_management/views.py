@@ -5,7 +5,7 @@ from appointment_management.serializers import AppointmentSerializer
 from hospital_management.models import Appointment
 from django.shortcuts import get_object_or_404
 from hospital_management.permissions import IsDoctorOnly, IsPatientOnly
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import IsAuthenticated
 
 class DoctorAppointmentViewAPI(APIView):
     permission_classes = [IsDoctorOnly]
@@ -41,7 +41,7 @@ class AppointmentViewAPI(APIView):
         
 
 class AppointmentDetailViewAPI(APIView):
-    
+    permission_classes = [IsAuthenticated]
     def get(self, request, pk):
         appointment = get_object_or_404(Appointment, pk=pk)
         serializer = AppointmentSerializer(appointment)
